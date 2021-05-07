@@ -16,6 +16,7 @@ if [ ! -d "${install_dir}" ]; then
   mkdir -p "${install_dir}"
 fi
 
-rm -rf "${install_dir}/${module_name}"
-cp -rf "${script_dir}/${module_name}" "${install_dir}/${module_name}"
-chmod +x "${install_dir}/${module_name}/"* -R
+mkdir -p "${install_dir}"
+cp -f "${script_dir}/zsh_config/.zshrc" "${install_dir}/.zshrc"
+chown "${user_name}:${user_name}" "${install_dir}/.zshrc"
+chmod 600 "${install_dir}/.zshrc"
