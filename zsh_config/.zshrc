@@ -168,7 +168,7 @@ else
       bindkey -M menuselect '^[[Z' reverse-menu-complete
 fi
 
-# Backwards kill a whole word or until a forward slash.
+# Backwards kill a whole word or until a forward slash or standard word delimiter
 backward-kill-dir () {
   local WORDCHARS=${WORDCHARS/\/}
   local WORDCHARS=${WORDCHARS//=}
@@ -179,8 +179,7 @@ backward-kill-dir () {
 }
 zle -N backward-kill-dir
 
-# Move word-wise forward considering path tokens as words.
-# TODO: Does not work in Linux console. Fix: http://www.linuxproblem.org/art_17.html
+# Move word-wise forward considering path tokens as words
 path-forward-word () {
   local WORDCHARS=${WORDCHARS/\/}
   local WORDCHARS=${WORDCHARS//=}
@@ -191,8 +190,7 @@ path-forward-word () {
 }
 zle -N path-forward-word
 
-# Move word-wise backward considering path tokens as words.
-# TODO: Does not work in Linux console. Fix: http://www.linuxproblem.org/art_17.html
+# Move word-wise backward considering path tokens as words
 path-backward-word () {
   local WORDCHARS=${WORDCHARS/\/}
   local WORDCHARS=${WORDCHARS//=}
@@ -205,7 +203,10 @@ zle -N path-backward-word
 
 # Errors in bold red.
 if [[ ! -v LD_PRELOAD ]]; then
+#"LD_PRELOAD=/path/to/gitbslr.so git"
+ #LD_PRELOAD="${AR18_PREFIX}/libstderred/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
  export LD_PRELOAD="${AR18_PREFIX}/libstderred/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+ #echo "${LD_PRELOAD}"
  bold=$(tput bold || tput md)
  red=$(tput setaf 1)
  export STDERRED_ESC_CODE=`echo -e "$bold$red"`

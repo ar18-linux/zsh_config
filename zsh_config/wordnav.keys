@@ -1,7 +1,10 @@
 # Make ctrl be recognized as a modifier so we can jump/delete whole words
 # http://www.linuxproblem.org/art_17.html
+# Jump backward
 control keycode 105 = Meta_b
+# Jump forward
 control keycode 106 = Meta_f
+# Delete backward. Delete forward seems to be supported natively
 control keycode 14 = Meta_d
 
 # Make shift + alt be recognized as input so we can go back in zsh auto-completion
