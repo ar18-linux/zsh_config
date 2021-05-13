@@ -25,8 +25,10 @@ mkdir -p "${script_dir}/build"
 
 cd "${script_dir}/build"
 git clone https://github.com/ar18-linux/libstderred.git
+chmod +x "${script_dir}/build/libstderred/install.sh"
 "${script_dir}/build/libstderred/install.sh"
 
 cd "${script_dir}/build"
 git clone https://github.com/ar18-linux/zsh_ar18_lib.git
+chmod +x "${script_dir}/build/zsh_ar18_lib/install.sh"
 "${script_dir}/build/zsh_ar18_lib/install.sh"
