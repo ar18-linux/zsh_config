@@ -130,9 +130,8 @@ zmodload zsh/complist
     # Go back and forth whole words
     if [ "${TERM}" = "linux" ]; then
       #       debian console
-      bindkey '^[b' path-backward-word
-      bindkey '^[f' path-forward-word
-      
+      #bindkey '^[b' path-backward-word
+      #bindkey '^[f' path-forward-word
       #       arch console
       bindkey '^[[D' path-backward-word
       bindkey '^[[C' path-forward-word
@@ -144,8 +143,8 @@ zmodload zsh/complist
     # Go at end and beginning of line
       if [ "${TERM}" = "linux" ]; then
         # debian console
-        bindkey "^[[1~" beginning-of-line
-        bindkey "^[[4~" end-of-line
+        #bindkey "^[[1~" beginning-of-line
+        #bindkey "^[[4~" end-of-line
         # arch console
         bindkey "^[[1~" beginning-of-line
         bindkey "^[[4~" end-of-line
@@ -161,7 +160,7 @@ zmodload zsh/complist
       # debian console
       
       # arch console
-      bindkey "^?" backward-kill-dir
+      #bindkey "^?" backward-kill-dir
       bindkey "^[[3~" kill-word
     else
       # xfce4-terminal
