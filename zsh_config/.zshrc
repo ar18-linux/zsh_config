@@ -375,7 +375,7 @@ my-accept-line(){
   if [[ "${BUFFER}" == *" please" ]]; then
     BUFFER="sudo ${BUFFER% please}"
   fi
-  echo "last_command=${BUFFER}" > "${tmp_dir}/${pid}/last_command"
+  echo "${BUFFER}" > "${tmp_dir}/${pid}/last_command"
   clear
   zle .accept-line
 }
