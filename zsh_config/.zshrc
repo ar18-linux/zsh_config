@@ -125,27 +125,39 @@ setopt globdots
 
 zmodload zsh/complist
 
-## Go back and forth whole words.
-# For linux console.
+# Keyboard shortcuts - Use Ctrl + v in a terminal to get keycodes needed here
+#   Movement
+#     Go back and forth whole words
+#       debian console
 bindkey '^[b' path-backward-word
-# For xfce4-terminal.
-bindkey '^[[1;5D' path-backward-word
-# For linux console.
 bindkey '^[f' path-forward-word
-# For xfce4-terminal.
+
+#       arch console
+bindkey '^[[D' path-backward-word
+bindkey '^[[C' path-forward-word
+#       xfce4-terminal
+bindkey '^[[1;5D' path-backward-word
 bindkey '^[[1;5C' path-forward-word
+
+#   Deletion
+#     Delete whole words
+#       debian console
+
+#       arch console
+bindkey "^?" backward-kill-dir
+#       xfce4-terminal
+bindkey "^H" backward-kill-dir
+#       unknown
+bindkey "^[[1~" beginning-of-line
+bindkey "^[[H" beginning-of-line
+bindkey "^[[4~" end-of-line
+bindkey "^[[F" end-of-line
+bindkey "^[[3;5~" kill-word
+bindkey "^[[3~" kill-word
 
 ## Shift + tab to go back in selection.
 # TODO: Not working in linux console. Fix: https://knowledgebase.progress.com/articles/Article/000049337
 bindkey -M menuselect '^[[Z' reverse-menu-complete
-
-bindkey "^[[1~" beginning-of-line
-bindkey "^[[1H" beginning-of-line
-bindkey "^[[4~" end-of-line
-bindkey "^[[F" end-of-line
-bindkey "^H" backward-kill-dir
-bindkey "^[[3;5~" kill-word
-bindkey "^[[3~" kill-word
 
 # Backwards kill a whole word or until a forward slash.
 backward-kill-dir () {
