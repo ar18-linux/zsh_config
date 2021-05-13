@@ -204,9 +204,9 @@ zle -N path-backward-word
 # Errors in bold red.
 if [[ ! -v LD_PRELOAD ]]; then
 #"LD_PRELOAD=/path/to/gitbslr.so git"
- #LD_PRELOAD="${AR18_PREFIX}/libstderred/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
- export LD_PRELOAD="${AR18_PREFIX}/libstderred/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
- #echo "${LD_PRELOAD}"
+ LD_PRELOAD="${AR18_PREFIX}/libstderred/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+ export LD_PRELOAD="${AR18_PREFIX}/GitBSLR/gitbslr.so${LD_PRELOAD:+:$LD_PRELOAD}"
+ echo "${LD_PRELOAD}"
  bold=$(tput bold || tput md)
  red=$(tput setaf 1)
  export STDERRED_ESC_CODE=`echo -e "$bold$red"`
