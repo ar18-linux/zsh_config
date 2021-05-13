@@ -50,6 +50,7 @@ mkdir -p "/dev/shm/ar18"
 rsync -rL "${AR18_PREFIX}/zsh_ar18_lib" "/dev/shm/ar18/"
 #rsync -rL "${AR18_PREFIX}/background" "/dev/shm/ar18/"
 rsync -rL "${AR18_PREFIX}/libstderred" "/dev/shm/ar18/"
+rsync -rL "${AR18_PREFIX}/GitBSLR" "/dev/shm/ar18/"
 
 export AR18_PREFIX="/dev/shm/ar18"
 #export AR18_PREFIX="/opt/ar18"
