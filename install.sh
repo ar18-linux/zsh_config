@@ -21,7 +21,7 @@ cp -f "${script_dir}/zsh_config/.zshrc" "/home/${user_name}/.zshrc"
 chown "${user_name}:${user_name}" "/home/${user_name}/.zshrc"
 chmod 600 "/home/${user_name}/.zshrc"
 
-mkdir "${script_dir}/build"
+mkdir -p "${script_dir}/build"
 
 cd "${script_dir}/build"
 git clone https://github.com/ar18-linux/libstderred.git
