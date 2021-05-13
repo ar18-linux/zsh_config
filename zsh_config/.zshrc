@@ -161,8 +161,8 @@ else
   # History
     # Search history with cursor
       # xfce4 terminal
-      bindkey '^[OA' history-beginning-search-backward
-      bindkey '^[OB' history-beginning-search-forward
+      bindkey '^[[A' history-beginning-search-backward
+      bindkey '^[[B' history-beginning-search-forward
   # Auto-completion
     # Shift + tab to go back in selection
       # xfce4 terminal
@@ -205,9 +205,9 @@ zle -N path-backward-word
 # Errors in bold red.
 if [[ ! -v LD_PRELOAD ]]; then
 #"LD_PRELOAD=/path/to/gitbslr.so git"
- LD_PRELOAD="${AR18_PREFIX}/libstderred/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
- export LD_PRELOAD="${AR18_PREFIX}/GitBSLR/gitbslr.so${LD_PRELOAD:+:$LD_PRELOAD}"
- echo "${LD_PRELOAD}"
+ export LD_PRELOAD="${AR18_PREFIX}/libstderred/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+ #export LD_PRELOAD="${AR18_PREFIX}/GitBSLR/gitbslr.so${LD_PRELOAD:+:$LD_PRELOAD}"
+ #echo "${LD_PRELOAD}"
  bold=$(tput bold || tput md)
  red=$(tput setaf 1)
  export STDERRED_ESC_CODE=`echo -e "$bold$red"`
@@ -371,7 +371,7 @@ alias sh="ssh pi@arserver-0.spdns.org -p2222"
 alias cd..="cd .."
 alias z="hstr"
 alias r=". ~/.zshrc"
-#alias git="LD_PRELOAD=/path/to/gitbslr.so git"
+alias git="LD_PRELOAD=/opt/ar18/GitBSLR/gitbslr.so; git"
 
 ## Preexec command. 
 #function preexec2(){
