@@ -56,7 +56,7 @@ export AR18_PREFIX="/opt/ar18"
 
 # Debugging ar18lib. Re-source functions even when already defined.
 alias type="false"
-. ${AR18_PREFIX}/lib/ar18.sh
+. ${AR18_PREFIX}/zsh_ar18_lib/ar18.sh
 
 ## Attach to last tmux session or start it if there a no sessions yet.
 #if [ "$TMUX" = "" ]; then tmux attach || tmux; fi
