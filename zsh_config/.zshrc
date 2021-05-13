@@ -191,16 +191,20 @@ fi
 
 
 function get_prompt_last_command_returned(){
-  last_command="$(cat "${tmp_dir}/${pid}/last_command")"
-  if [[ "${last_command}" != "" ]]; then
-    printf '\n%s' "[$(get_prompt_command_time)] Command [$(get_prompt_last_command)] returned [$(get_prompt_last_code)] [e2s]"
+  if [ -f "${tmp_dir}/${pid}/last_command" ]; then
+    last_command="$(cat "${tmp_dir}/${pid}/last_command")"
+    if [[ "${last_command}" != "" ]]; then
+      printf '\n%s' "[$(get_prompt_command_time)] Command [$(get_prompt_last_command)] returned [$(get_prompt_last_code)] [e2s]"
+    fi
   fi
 }
 
 
 function get_prompt_last_command(){
-  last_command="$(cat "${tmp_dir}/${pid}/last_command")"
-  printf '%s' "${last_command}"
+  if [ -f "${tmp_dir}/${pid}/last_command" ]; then
+    last_command="$(cat "${tmp_dir}/${pid}/last_command")"
+    printf '%s' "${last_command}"
+  fi
 }
 
 
