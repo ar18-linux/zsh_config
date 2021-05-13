@@ -147,7 +147,7 @@ if [ "${TERM}" = "linux" ]; then
       # debian console
       
       # arch console
-      #bindkey "^?" backward-kill-dir
+      bindkey '^[b' backward-kill-dir
       bindkey "^[[3~" kill-word
 else
   # Movement
