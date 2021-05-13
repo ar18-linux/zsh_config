@@ -257,9 +257,13 @@ function get_prompt_last_code(){
 
 
 function get_prompt_date_time(){
-  last_command="$(cat "${tmp_dir}/${pid}/last_command")"
-  if [[ "${last_command}" != "" ]]; then
-    printf '\n%s' "[%D %D{%L:%M:%S}]"
+  if [ -f "${tmp_dir}/${pid}/last_command" ]; then
+    last_command="$(cat "${tmp_dir}/${pid}/last_command")"
+    if [[ "${last_command}" != "" ]]; then
+      printf '\n%s' "[%D %D{%L:%M:%S}]"
+    else
+      printf '%s' "[%D %D{%H:%M:%S}]"
+    fi
   else
     printf '%s' "[%D %D{%H:%M:%S}]"
   fi
