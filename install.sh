@@ -21,6 +21,8 @@ cp -f "${script_dir}/zsh_config/.zshrc" "/home/${user_name}/.zshrc"
 chown "${user_name}:${user_name}" "/home/${user_name}/.zshrc"
 chmod 600 "/home/${user_name}/.zshrc"
 
+echo "${install_dir}" > "${install_dir}/ar18_prefix"
+
 mkdir -p "${script_dir}/build"
 
 cd "${script_dir}/build"
