@@ -71,9 +71,9 @@ loadkeys /opt/ar18/zsh_config/wordnav.keys 2>/dev/null
 pid="$$"
 
 tmp_dir="${AR18_PREFIX}/tmp"
-mkdir -p "${tmp_dir}"
+mkdir -p "${tmp_dir}/${pid}"
 
-echo "shell_start_time=$(date +%s)" > "${tmp_dir}/${pid}"
+echo "$(date +%s)" > "${tmp_dir}/${pid}/shell_start_time"
 
 set -u
 #set -o pipefail
@@ -191,7 +191,7 @@ fi
 
 
 function get_prompt_last_command_returned(){
-  last_command="$(cat "${tmp_dir}/${pid}" | grep last_command | cut -d '=' -f 2-)"
+  last_command="$(cat "${tmp_dir}/${pid}/last_command")"
   if [[ "${last_command}" != "" ]]; then
     printf '\n%s' "[$(get_prompt_command_time)] Command [$(get_prompt_last_command)] returned [$(get_prompt_last_code)] [e2s]"
   fi
@@ -199,7 +199,7 @@ function get_prompt_last_command_returned(){
 
 
 function get_prompt_last_command(){
-  last_command="$(cat "${tmp_dir}/${pid}" | grep last_command= | cut -d '=' -f 2-)"
+  last_command="$(cat "${tmp_dir}/${pid}/last_command")"
   printf '%s' "${last_command}"
 }
 
@@ -237,7 +237,7 @@ function get_prompt_disk_usage(){
 
 function get_prompt_command_time(){
   local start_time="$(date +%s)"
-  local command_time="$(cat "${tmp_dir}/${pid}" | grep last_command_start_time | cut -d '=' -f 2-)"
+  local command_time="$(cat "${tmp_dir}/${pid}/last_command_start_time")"
   if [[ "${command_time}" != "" ]]; then
     printf '%s' "$((start_time - command_time))"
   else
@@ -253,7 +253,7 @@ function get_prompt_last_code(){
 
 
 function get_prompt_date_time(){
-  last_command="$(cat "${tmp_dir}/${pid}" | grep last_command | cut -d '=' -f 2-)"
+  last_command="$(cat "${tmp_dir}/${pid}/last_command")"
   if [[ "${last_command}" != "" ]]; then
     printf '\n%s' "[%D %D{%L:%M:%S}]"
   else
@@ -312,8 +312,7 @@ function precmd2(){
 #RPROMPT='[%D{%L:%M:%S %p}]'
 
 # Update prompt every TMOUT seconds. View is scrolled down in this event though.
-# Selected text is unselected at refresh. These things don't happen with terminator 
-#terminal emulator.
+# Selected text is unselected at refresh. These things don't happen with terminator terminal emulator.
 # Or set "scroll on output" to false.
 #TRAPALRM(){
   # Debug: Get value of $WIDGET if it doesn't work and add it to condition.
@@ -342,18 +341,18 @@ alias r=". ~/.zshrc"
 #alias git="LD_PRELOAD=/path/to/gitbslr.so git"
 
 ## Preexec command. 
-function preexec2(){
-  echo "foo: $1"
-  start_time="$(date +%s)"
-  sed -i "s/^last_command_start_time=.+$//g" "${tmp_dir}/${pid}"
-  echo "last_command_start_time=${start_time}" >> "${tmp_dir}/${pid}"
-}
+#function preexec2(){
+#  echo "foo: $1"
+#  start_time="$(date +%s)"
+#  sed -i "s/^last_command_start_time=.+$//g" "${tmp_dir}/${pid}"
+#  echo "last_command_start_time=${start_time}" >> "${tmp_dir}/${pid}"
+#}
 
 ## Exit trap.
 function on_exit(){
   # Detach from tmux on exit automatically.
   #tmux detach
-  rm "${tmp_dir}/${pid}"
+  rm -rf "${tmp_dir}/${pid}"
 }
 
 trap 'on_exit' EXIT
@@ -361,17 +360,14 @@ trap 'on_exit' EXIT
 ## Custom accept-line widget.
 my-accept-line(){
   start_time="$(date +%s)"
-  #echo "last_command_start_time=${start_time}"
-  sed -i '/^last_command_start_time=/d' "${tmp_dir}/${pid}"
-  echo "last_command_start_time=${start_time}" >> "${tmp_dir}/${pid}"
+  echo "last_command_start_time=${start_time}" > "${tmp_dir}/${pid}/last_command_start_time"
 
   #cat "${tmp_dir}/${pid}" | grep last_command_start_time | cut -d '=' -f 2-
   # Kindly ...
   if [[ "${BUFFER}" == *" please" ]]; then
     BUFFER="sudo ${BUFFER% please}"
   fi
-  sed -i '/^last_command=/d' "${tmp_dir}/${pid}"
-  echo "last_command=${BUFFER}" >> "${tmp_dir}/${pid}"
+  echo "last_command=${BUFFER}" > "${tmp_dir}/${pid}/last_command"
   clear
   zle .accept-line
 }
