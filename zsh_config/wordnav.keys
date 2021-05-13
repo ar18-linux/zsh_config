@@ -1,6 +1,6 @@
 # Make ctrl + right/left arrows work in linux console.
-#control keycode 105 = Meta_b
-#control keycode 106 = Meta_f
+control keycode 105 = Meta_b
+control keycode 106 = Meta_f
 
 # Make shift + alt work in linux console.
 #string F91 = "\033[Z"

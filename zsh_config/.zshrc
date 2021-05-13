@@ -65,9 +65,6 @@ alias type="false"
 # Create fbterm environment in case we are in the linux console.
 fbterm 2>/dev/null
 
-# Load key binding for linux console to make it more like terminal emulator.
-loadkeys /opt/ar18/zsh_config/wordnav.keys 2>/dev/null
-
 pid="$$"
 
 tmp_dir="${AR18_PREFIX}/tmp"
@@ -133,8 +130,8 @@ zmodload zsh/complist
       #bindkey '^[b' path-backward-word
       #bindkey '^[f' path-forward-word
       #       arch console
-      bindkey '^[[D' path-backward-word
-      bindkey '^[[C' path-forward-word
+      bindkey '^[b' path-backward-word
+      bindkey '^[f' path-forward-word
     else
       #       xfce4-terminal
       bindkey '^[[1;5D' path-backward-word
@@ -168,6 +165,9 @@ zmodload zsh/complist
       bindkey "^[[4~" end-of-line
       bindkey "^[[3;5~" kill-word
     fi
+    
+# Load key binding for linux console to make it more like terminal emulator.
+loadkeys /opt/ar18/zsh_config/wordnav.keys 2>/dev/null
 
 ## Shift + tab to go back in selection.
 # TODO: Not working in linux console. Fix: https://knowledgebase.progress.com/articles/Article/000049337
