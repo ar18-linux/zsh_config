@@ -123,51 +123,51 @@ setopt globdots
 zmodload zsh/complist
 
 # Keyboard shortcuts - Use Ctrl + v in a terminal to get keycodes needed here
+if [ "${TERM}" = "linux" ]; then
+  # Load key binding for linux console to make it more like terminal emulator.
+  loadkeys /opt/ar18/zsh_config/wordnav.keys 2>/dev/null
   # Movement
     # Go back and forth whole words
-    if [ "${TERM}" = "linux" ]; then
-      #       debian console
+      # debian console
       #bindkey '^[b' path-backward-word
       #bindkey '^[f' path-forward-word
       #       arch console
       bindkey '^[b' path-backward-word
       bindkey '^[f' path-forward-word
-    else
-      #       xfce4-terminal
-      bindkey '^[[1;5D' path-backward-word
-      bindkey '^[[1;5C' path-forward-word
-    fi
     # Go at end and beginning of line
-      if [ "${TERM}" = "linux" ]; then
-        # debian console
-        #bindkey "^[[1~" beginning-of-line
-        #bindkey "^[[4~" end-of-line
-        # arch console
-        bindkey "^[[1~" beginning-of-line
-        bindkey "^[[4~" end-of-line
-      else
-        # xfce4-terminal
-        bindkey "^[[H" beginning-of-line
-        bindkey "^[[F" end-of-line
-      fi
+      # debian console
+      #bindkey "^[[1~" beginning-of-line
+      #bindkey "^[[4~" end-of-line
+      # arch console
+      bindkey "^[[1~" beginning-of-line
+      bindkey "^[[4~" end-of-line
 
   # Deletion
     # Delete whole words
-    if [ "${TERM}" = "linux" ]; then
       # debian console
       
       # arch console
       #bindkey "^?" backward-kill-dir
       bindkey "^[[3~" kill-word
-    else
+else
+  # Movement
+    # Go back and forth whole words
+      # xfce4-terminal
+      bindkey '^[[1;5D' path-backward-word
+      bindkey '^[[1;5C' path-forward-word
+    # Go at end and beginning of line
+      # xfce4-terminal
+      bindkey "^[[H" beginning-of-line
+      bindkey "^[[F" end-of-line
+
+  # Deletion
+    # Delete whole words
       # xfce4-terminal
       bindkey "^H" backward-kill-dir
       bindkey "^[[4~" end-of-line
       bindkey "^[[3;5~" kill-word
-    fi
-    
-# Load key binding for linux console to make it more like terminal emulator.
-loadkeys /opt/ar18/zsh_config/wordnav.keys 2>/dev/null
+fi
+  
 
 ## Shift + tab to go back in selection.
 # TODO: Not working in linux console. Fix: https://knowledgebase.progress.com/articles/Article/000049337
