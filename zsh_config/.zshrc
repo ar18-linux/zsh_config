@@ -47,9 +47,9 @@ export AR18_PREFIX="$(cat /opt/ar18/ar18_prefix)"
 find "/dev/shm/ar18/../"* -mindepth 1 -maxdepth 1 -type d -not -name tmp -not -name libstderrred -exec rm -r {} +;
 mkdir -p "/dev/shm/ar18"
 #rsync -rL "${AR18_PREFIX}/tmux" "/dev/shm/ar18/"
-rsync -rL "${AR18_PREFIX}/zsh_ar18lib" "/dev/shm/ar18/"
+rsync -rL "${AR18_PREFIX}/zsh_ar18_lib" "/dev/shm/ar18/"
 #rsync -rL "${AR18_PREFIX}/background" "/dev/shm/ar18/"
-rsync -rL "${AR18_PREFIX}/libstderrred" "/dev/shm/ar18/"
+rsync -rL "${AR18_PREFIX}/libstderred" "/dev/shm/ar18/"
 
 export AR18_PREFIX="/dev/shm/ar18"
 #export AR18_PREFIX="/opt/ar18"
