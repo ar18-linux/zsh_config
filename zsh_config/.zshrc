@@ -128,16 +128,19 @@ zmodload zsh/complist
 # Keyboard shortcuts - Use Ctrl + v in a terminal to get keycodes needed here
 #   Movement
 #     Go back and forth whole words
-#       debian console
-bindkey '^[b' path-backward-word
-bindkey '^[f' path-forward-word
-
-#       arch console
-bindkey '^[[D' path-backward-word
-bindkey '^[[C' path-forward-word
-#       xfce4-terminal
-bindkey '^[[1;5D' path-backward-word
-bindkey '^[[1;5C' path-forward-word
+if [ "${TERM}" == "linux" ]; then
+  #       debian console
+  bindkey '^[b' path-backward-word
+  bindkey '^[f' path-forward-word
+  
+  #       arch console
+  bindkey '^[[D' path-backward-word
+  bindkey '^[[C' path-forward-word
+else
+  #       xfce4-terminal
+  bindkey '^[[1;5D' path-backward-word
+  bindkey '^[[1;5C' path-forward-word
+fi
 
 #   Deletion
 #     Delete whole words
@@ -318,14 +321,14 @@ export PROMPT=$'$(get_prompt_last_command_returned)$(get_prompt_date_time) $(get
 
 export PATH=$PATH:.
 
-function precmd2(){
-  clear
-  return
-  LEFT="The time is"
-  RIGHT="$(date) "
-  RIGHTWIDTH=$(($COLUMNS-${#LEFT}))
-  print $LEFT${(l:$RIGHTWIDTH::.:)RIGHT}
-}
+#function precmd2(){
+#  clear
+#  return
+#  LEFT="The time is"
+# RIGHT="$(date) "
+#  RIGHTWIDTH=$(($COLUMNS-${#LEFT}))
+#  print $LEFT${(l:$RIGHTWIDTH::.:)RIGHT}
+#}
 
 ## Right prompt.
 # Right prompt ends exactly at right edge.
