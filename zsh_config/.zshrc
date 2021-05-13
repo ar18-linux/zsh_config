@@ -35,24 +35,25 @@
 #echo 'unsetopt global_rcs' > ~/.zprofile
 #echo " " > ~/.zprofile
 
-#export AR18_PREFIX="$(cat /opt/ar18_prefix)"
 if [[ ! -o interactive ]]; then
   echo $$ > /tmp/non-interactive
   exit
 fi
 
+export AR18_PREFIX="$(cat /opt/ar18/ar18_prefix)"
+
 #mkdir -p "/dev/shm/ar18/tmp"
 # Delete all in /dev/shm/ar18 except /tmp and /stderrred.
-#find "/dev/shm/ar18/../"* -mindepth 1 -maxdepth 1 -type d -not -name tmp -not -name stderrred -exec rm -r {} +;
-#mkdir -p "/dev/shm/ar18"
+find "/dev/shm/ar18/../"* -mindepth 1 -maxdepth 1 -type d -not -name tmp -not -name libstderrred -exec rm -r {} +;
+mkdir -p "/dev/shm/ar18"
 #rsync -rL "${AR18_PREFIX}/tmux" "/dev/shm/ar18/"
-#rsync -rL "${AR18_PREFIX}/lib" "/dev/shm/ar18/"
+rsync -rL "${AR18_PREFIX}/zsh_ar18lib" "/dev/shm/ar18/"
 #rsync -rL "${AR18_PREFIX}/background" "/dev/shm/ar18/"
-#rsync -rL "${AR18_PREFIX}/stderrred" "/dev/shm/ar18/"
+rsync -rL "${AR18_PREFIX}/libstderrred" "/dev/shm/ar18/"
 
-#export AR18_PREFIX="/dev/shm/ar18"
-export AR18_PREFIX="/opt/ar18"
-#chmod 777 "${AR18_PREFIX}" -R
+export AR18_PREFIX="/dev/shm/ar18"
+#export AR18_PREFIX="/opt/ar18"
+chmod 755 "${AR18_PREFIX}" -R
 
 # Debugging ar18lib. Re-source functions even when already defined.
 alias type="false"
