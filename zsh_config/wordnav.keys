@@ -1,11 +1,13 @@
-# Make ctrl + right/left arrows work in linux console.
+# Make ctrl be recognized as a modifier so we can jump/delete whole words
+# http://www.linuxproblem.org/art_17.html
 control keycode 105 = Meta_b
 control keycode 106 = Meta_f
 control keycode 14 = Meta_d
 
-# Make shift + alt work in linux console.
-#string F91 = "\033[Z"
-#string F92 = "\033\033[Z"
-#keycode 15 = Tab F91
-#alt keycode 15 = Meta_Tab
-#shift alt keycode 15 = F92
+# Make shift + alt be recognized as input so we can go back in zsh auto-completion
+# https://knowledgebase.progress.com/articles/Article/000049337
+string F91 = "\033[Z"
+string F92 = "\033\033[Z"
+keycode 15 = Tab F91
+alt keycode 15 = Meta_Tab
+shift alt keycode 15 = F92

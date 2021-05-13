@@ -103,20 +103,6 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
-## Search history with cursor.
-# For linux console.
-bindkey '^[[A' history-beginning-search-backward
-# For xfce4-terminal.
-bindkey '^[OA' history-beginning-search-backward
-#bindkey '^[OA' history-incremental-search-backward
-#bindkey '^[OA' history-search-backward
-#bindkey '^[OA' history-substring-search-up
-# For linux console.
-bindkey '^[[B' history-beginning-search-forward
-# For xfce4-terminal.
-bindkey '^[OB' history-beginning-search-forward
-
-
 # Show dot files in autocomplete.
 setopt globdots
 
@@ -124,20 +110,16 @@ zmodload zsh/complist
 
 # Keyboard shortcuts - Use Ctrl + v in a terminal to get keycodes needed here
 if [ "${TERM}" = "linux" ]; then
-  # Load key binding for linux console to make it more like terminal emulator.
+  # Load key binding for linux console to make it more like terminal emulator
   loadkeys /opt/ar18/zsh_config/wordnav.keys 2>/dev/null
   # Movement
     # Go back and forth whole words
       # debian console
-      #bindkey '^[b' path-backward-word
-      #bindkey '^[f' path-forward-word
-      #       arch console
+      # arch console
       bindkey '^[b' path-backward-word
       bindkey '^[f' path-forward-word
     # Go at end and beginning of line
       # debian console
-      #bindkey "^[[1~" beginning-of-line
-      #bindkey "^[[4~" end-of-line
       # arch console
       bindkey "^[[1~" beginning-of-line
       bindkey "^[[4~" end-of-line
@@ -145,10 +127,19 @@ if [ "${TERM}" = "linux" ]; then
   # Deletion
     # Delete whole words
       # debian console
-      
       # arch console
-      bindkey '^[b' backward-kill-dir
+      bindkey '^[d' backward-kill-dir
       bindkey "^[[3~" kill-word
+  # History
+    # Search history with cursor
+      # debian console
+      # arch console
+      bindkey '^[[A' history-beginning-search-backward
+      bindkey '^[[B' history-beginning-search-forward
+  # Auto-completion
+    # Shift + tab to go back in selection
+      # arch/debian console
+      bindkey -M menuselect '^[[Z' reverse-menu-complete
 else
   # Movement
     # Go back and forth whole words
@@ -166,12 +157,16 @@ else
       bindkey "^H" backward-kill-dir
       bindkey "^[[4~" end-of-line
       bindkey "^[[3;5~" kill-word
+  # History
+    # Search history with cursor
+      # xfce4 terminal
+      bindkey '^[OA' history-beginning-search-backward
+      bindkey '^[OB' history-beginning-search-forward
+  # Auto-completion
+    # Shift + tab to go back in selection
+      # xfce4 terminal
+      bindkey -M menuselect '^[[Z' reverse-menu-complete
 fi
-  
-
-## Shift + tab to go back in selection.
-# TODO: Not working in linux console. Fix: https://knowledgebase.progress.com/articles/Article/000049337
-bindkey -M menuselect '^[[Z' reverse-menu-complete
 
 # Backwards kill a whole word or until a forward slash.
 backward-kill-dir () {
