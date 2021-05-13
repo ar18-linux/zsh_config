@@ -234,26 +234,26 @@ function get_prompt_last_command(){
 
 
 function get_prompt_host(){
-	set +u
-	local my_session_type="foo"
-	local my_ssh_client="${SSH_CLIENT}" || true
-	local my_ssh_tty="${SSH_TTY}" || true
-	if [[ "${my_ssh_client}" != "" ]] || [[ "${my_ssh_tty}" != "" ]]; then
-	  my_session_type=remote/ssh
-	# many other tests omitted
-	else
-	  case $(ps -o comm= -p $PPID) in
-		sshd|*/sshd) my_session_type=remote/ssh;;
-	  esac
-	fi
-	set -u
+  set +u
+  local my_session_type="foo"
+  local my_ssh_client="${SSH_CLIENT}" || true
+  local my_ssh_tty="${SSH_TTY}" || true
+  if [[ "${my_ssh_client}" != "" ]] || [[ "${my_ssh_tty}" != "" ]]; then
+    my_session_type=remote/ssh
+  # many other tests omitted
+  else
+    case $(ps -o comm= -p $PPID) in
+  	sshd|*/sshd) my_session_type=remote/ssh;;
+    esac
+  fi
+  set -u
 
-	if [[ "${my_session_type}" == "remote/ssh" ]]; then
-	  local host="%F{red}%M%f"
-	else
-	  local host="%F{green}%M%f"
-	fi
-	printf '%s' "${host}"
+  if [[ "${my_session_type}" == "remote/ssh" ]]; then
+    local host="%F{red}%M%f"
+  else
+    local host="%F{green}%M%f"
+  fi
+  printf '%s' "${host}"
 }
 
 
@@ -371,7 +371,7 @@ alias sh="ssh pi@arserver-0.spdns.org -p2222"
 alias cd..="cd .."
 alias z="hstr"
 alias r=". ~/.zshrc"
-alias git="LD_PRELOAD=/opt/ar18/GitBSLR/gitbslr.so && git"
+alias git="LD_PRELOAD=/opt/ar18/GitBSLR/gitbslr.so git"
 
 ## Preexec command. 
 #function preexec2(){
