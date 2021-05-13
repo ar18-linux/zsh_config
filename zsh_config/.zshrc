@@ -371,7 +371,7 @@ alias sh="ssh pi@arserver-0.spdns.org -p2222"
 alias cd..="cd .."
 alias z="hstr"
 alias r=". ~/.zshrc"
-alias git="LD_PRELOAD=/opt/ar18/GitBSLR/gitbslr.so; git"
+alias git="LD_PRELOAD=/opt/ar18/GitBSLR/gitbslr.so && git"
 
 ## Preexec command. 
 #function preexec2(){
