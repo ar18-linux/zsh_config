@@ -66,7 +66,7 @@ alias type="false"
 fbterm 2>/dev/null
 
 # Load key binding for linux console to make it more like terminal emulator.
-loadkeys /usr/local/wordnav.keys 2>/dev/null
+loadkeys /opt/ar18/zsh_config/wordnav.keys 2>/dev/null
 
 pid="$$"
 
