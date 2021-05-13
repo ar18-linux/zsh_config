@@ -21,6 +21,10 @@ cp -f "${script_dir}/zsh_config/.zshrc" "/home/${user_name}/.zshrc"
 chown "${user_name}:${user_name}" "/home/${user_name}/.zshrc"
 chmod 600 "/home/${user_name}/.zshrc"
 
+cp -f "${script_dir}/zsh_config/wordnav.keys" "${install_dir}/${module_name}/wordnav.keys"
+chown "${user_name}:${user_name}" "${install_dir}/${module_name}/wordnav.keys"
+chmod 644 "${install_dir}/${module_name}/wordnav.keys"
+
 echo "${install_dir}" > "${install_dir}/ar18_prefix"
 
 mkdir -p "${script_dir}/build"
