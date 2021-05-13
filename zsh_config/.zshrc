@@ -147,12 +147,12 @@ zmodload zsh/complist
         bindkey "^[[1~" beginning-of-line
         bindkey "^[[4~" end-of-line
         # arch console
-        bindkey "^[[H" beginning-of-line
-        bindkey "^[[F" end-of-line
-      else
-        # xfce4-terminal
         bindkey "^[[1~" beginning-of-line
         bindkey "^[[4~" end-of-line
+      else
+        # xfce4-terminal
+        bindkey "^[[H" beginning-of-line
+        bindkey "^[[F" end-of-line
       fi
 
   # Deletion
@@ -162,12 +162,12 @@ zmodload zsh/complist
       
       # arch console
       bindkey "^?" backward-kill-dir
-      bindkey "^[[3;5~" kill-word
+      bindkey "^[[3~" kill-word
     else
       # xfce4-terminal
       bindkey "^H" backward-kill-dir
       bindkey "^[[4~" end-of-line
-      bindkey "^[[3~" kill-word
+      bindkey "^[[3;5~" kill-word
     fi
 
 ## Shift + tab to go back in selection.
