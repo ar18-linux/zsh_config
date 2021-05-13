@@ -140,7 +140,9 @@ bindkey '^[[1;5C' path-forward-word
 bindkey -M menuselect '^[[Z' reverse-menu-complete
 
 bindkey "^[[1~" beginning-of-line
+bindkey "^[[1H" beginning-of-line
 bindkey "^[[4~" end-of-line
+bindkey "^[[F" end-of-line
 bindkey "^H" backward-kill-dir
 bindkey "^[[3;5~" kill-word
 bindkey "^[[3~" kill-word
