@@ -29,10 +29,11 @@ echo "${install_dir}" > "${install_dir}/ar18_prefix"
 
 mkdir -p "${script_dir}/build"
 
-cd "${script_dir}/build"
-git clone https://github.com/ar18-linux/libstderred.git
-chmod +x "${script_dir}/build/libstderred/install.sh"
-"${script_dir}/build/libstderred/install.sh"
+# Removed and replaced due to a bug where a python script could not be executed and instead opened an interactive python shell instead
+#cd "${script_dir}/build"
+#git clone https://github.com/ar18-linux/libstderred.git
+#chmod +x "${script_dir}/build/libstderred/install.sh"
+#"${script_dir}/build/libstderred/install.sh"
 
 cd "${script_dir}/build"
 git clone https://github.com/ar18-linux/zsh_ar18_lib.git
