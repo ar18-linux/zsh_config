@@ -203,9 +203,17 @@ path-backward-word () {
 zle -N path-backward-word
 
 # Errors in bold red
-autoload colors && colors
-exec 2>>( sed -u "s/^/${fg_bold[red]}/; s/\$/${reset_color}/" )
-
+# The zsh approach does not work with a call to bash,i.e. there will be no prompt.
+#autoload colors && colors
+#exec 2>>( sed -u "s/^/${fg_bold[red]}/; s/\$/${reset_color}/" )
+# The libstderred approach does not work when executing a python script, instead of executing the script an interactive python shell is started. Workaround: set LD_PRELOAD to empty before the call 
+if [[ ! -v LD_PRELOAD ]]; then
+ export LD_PRELOAD="${AR18_PREFIX}/libstderred/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+ bold=$(tput bold || tput md)
+ red=$(tput setaf 1)
+ export STDERRED_ESC_CODE=`echo -e "$bold$red"`
+ export STDERRED_BLACKLIST="^(bash|test.*)$"
+fi
 
 function get_prompt_last_command_returned(){
   if [ -f "${tmp_dir}/${pid}/last_command" ]; then
