@@ -202,17 +202,9 @@ path-backward-word () {
 }
 zle -N path-backward-word
 
-# Errors in bold red.
-if [[ ! -v LD_PRELOAD ]]; then
-#"LD_PRELOAD=/path/to/gitbslr.so git"
- export LD_PRELOAD="${AR18_PREFIX}/libstderred/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
- #export LD_PRELOAD="${AR18_PREFIX}/GitBSLR/gitbslr.so${LD_PRELOAD:+:$LD_PRELOAD}"
- #echo "${LD_PRELOAD}"
- bold=$(tput bold || tput md)
- red=$(tput setaf 1)
- export STDERRED_ESC_CODE=`echo -e "$bold$red"`
- export STDERRED_BLACKLIST="^(bash|test.*)$"
-fi
+# Errors in bold red
+autoload colors && colors
+exec 2>>( sed -u "s/^/${fg_bold[red]}/; s/\$/${reset_color}/" )
 
 
 function get_prompt_last_command_returned(){
