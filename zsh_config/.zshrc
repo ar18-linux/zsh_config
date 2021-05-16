@@ -372,6 +372,10 @@ alias cd..="cd .."
 alias z="hstr"
 alias r=". ~/.zshrc"
 alias git="LD_PRELOAD=/opt/ar18/GitBSLR/gitbslr.so git"
+# Programs that don't work well with libstderred
+alias systemctl="LD_PRELOAD='' systemctl"
+alias python="LD_PRELOAD='' python"
+alias bash="LD_PRELOAD='' bash"
 
 ## Preexec command. 
 #function preexec2(){
