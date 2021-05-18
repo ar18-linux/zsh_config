@@ -376,6 +376,7 @@ alias git="LD_PRELOAD=/opt/ar18/GitBSLR/gitbslr.so git"
 alias systemctl="LD_PRELOAD='' systemctl"
 alias python="LD_PRELOAD='' python"
 alias bash="LD_PRELOAD='' bash"
+alias xonsh="LD_PRELOAD='' xonsh"
 
 ## Preexec command. 
 #function preexec2(){
