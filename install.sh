@@ -43,3 +43,5 @@ cd "${script_dir}/build"
 git clone https://github.com/ar18-linux/GitBSLR.git
 chmod +x "${script_dir}/build/GitBSLR/install.sh"
 "${script_dir}/build/GitBSLR/install.sh"
+
+usermod --shell /bin/zsh "${user_name}"
