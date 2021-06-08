@@ -12,9 +12,7 @@ script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 . "${script_dir}/vars"
 
-if [ ! -d "${install_dir}" ]; then
-  mkdir -p "${install_dir}"
-fi
+mkdir -p "${install_dir}"
 
 mkdir -p "${install_dir}/${module_name}"
 cp -f "${script_dir}/zsh_config/.zshrc" "/home/${user_name}/.zshrc"
