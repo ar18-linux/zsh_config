@@ -377,6 +377,7 @@ alias systemctl="LD_PRELOAD='' systemctl"
 alias python="LD_PRELOAD='' python"
 alias bash="LD_PRELOAD='' bash"
 alias xonsh="LD_PRELOAD='' xonsh"
+alias makepkg="LD_PRELOAD='' makepkg"
 
 ## Preexec command. 
 #function preexec2(){
