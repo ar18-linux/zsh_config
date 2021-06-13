@@ -47,7 +47,7 @@ echo "${ar18_sudo_password}" | sudo -Sk cp -f "${script_dir}/zsh_config/wordnav.
 echo "${ar18_sudo_password}" | sudo -Sk chown "root:${user_name}" "${install_dir}/${module_name}/wordnav.keys"
 echo "${ar18_sudo_password}" | sudo -Sk chmod 4750 "${install_dir}/${module_name}/wordnav.keys"
 
-echo "${ar18_sudo_password}" | sudo -Sk echo "${install_dir}" > "${install_dir}/ar18_prefix"
+echo "${ar18_sudo_password}" | sudo -Sk su -c "echo \"${install_dir}\" > \"${install_dir}/ar18_prefix\""
 
 mkdir -p "${script_dir}/build"
 
