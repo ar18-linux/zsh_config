@@ -378,6 +378,7 @@ alias python="LD_PRELOAD='' python"
 alias bash="LD_PRELOAD='' bash"
 alias xonsh="LD_PRELOAD='' xonsh"
 alias makepkg="LD_PRELOAD='' makepkg"
+alias pip3="LD_PRELOAD='' pip3"
 
 ## Preexec command. 
 #function preexec2(){
