@@ -371,10 +371,10 @@ alias sh="ssh pi@arserver-0.spdns.org -p2222"
 alias cd..="cd .."
 alias z="hstr"
 alias r=". ~/.zshrc"
-alias sysst="sudo systemctl start"
-alias sysss="systemctl status"
-alias syssp="sudo systemctl stop"
-alias sysr="sudo systemctl restart"
+alias sysst="LD_PRELOAD= sudo systemctl start"
+alias sysss="LD_PRELOAD= systemctl status"
+alias syssp="LD_PRELOAD= sudo systemctl stop"
+alias sysr="LD_PRELOAD= sudo systemctl restart"
 alias git="LD_PRELOAD=/opt/ar18/GitBSLR/gitbslr.so git"
 # Programs that don't work well with libstderred
 alias systemctl="LD_PRELOAD='' systemctl"
@@ -383,6 +383,7 @@ alias bash="LD_PRELOAD='' bash"
 alias xonsh="LD_PRELOAD='' xonsh"
 alias makepkg="LD_PRELOAD='' makepkg"
 alias pip3="LD_PRELOAD='' pip3"
+alias nmcli="LD_PRELOAD= nmcli"
 
 ## Preexec command. 
 #function preexec2(){
