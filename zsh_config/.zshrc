@@ -251,7 +251,7 @@ function get_prompt_host(){
   if [[ "${my_session_type}" == "remote/ssh" ]]; then
     local host="%B%F{red}%M%f%b"
   else
-    local host="%F{green}%M%f"
+    local host="%B%F{green}%M%f%b"
   fi
   printf '%s' "${host}"
 }
