@@ -32,41 +32,43 @@ set -o pipefail
 set -eu
 #################################SCRIPT_START##################################
 
-set -x
+ar18.script.import ar18.script.install
+ar18.script.import ar18.script.obtain_sudo_password
+ar18.script.import ar18.script.execute_with_sudo
 
 . "${script_dir}/vars"
-if [ ! -v ar18_helper_functions ]; then rm -rf "/tmp/helper_functions_$(whoami)"; cd /tmp; git clone https://github.com/ar18-linux/helper_functions.git; mv "/tmp/helper_functions" "/tmp/helper_functions_$(whoami)"; . "/tmp/helper_functions_$(whoami)/helper_functions/helper_functions.sh"; cd "${script_dir}"; export ar18_helper_functions=1; fi
-obtain_sudo_password
 
-echo "${ar18_sudo_password}" | sudo -Sk mkdir -p "${install_dir}/${module_name}"
+ar18.script.obtain_sudo_password
+
+ar18.script.execute_with_sudo mkdir -p "${install_dir}/${module_name}"
 cp -f "${script_dir}/zsh_config/.zshrc" "/home/${user_name}/.zshrc"
-echo "${ar18_sudo_password}" | sudo -Sk chown "${user_name}:${user_name}" "/home/${user_name}/.zshrc"
-echo "${ar18_sudo_password}" | sudo -Sk chmod 600 "/home/${user_name}/.zshrc"
+ar18.script.execute_with_sudo chown "${user_name}:${user_name}" "/home/${user_name}/.zshrc"
+ar18.script.execute_with_sudo chmod 600 "/home/${user_name}/.zshrc"
 
-echo "${ar18_sudo_password}" | sudo -Sk cp -f "${script_dir}/zsh_config/wordnav.keys" "${install_dir}/${module_name}/wordnav.keys"
-echo "${ar18_sudo_password}" | sudo -Sk chown "root:${user_name}" "${install_dir}/${module_name}/wordnav.keys"
-echo "${ar18_sudo_password}" | sudo -Sk chmod 4750 "${install_dir}/${module_name}/wordnav.keys"
+ar18.script.execute_with_sudo cp -f "${script_dir}/zsh_config/wordnav.keys" "${install_dir}/${module_name}/wordnav.keys"
+ar18.script.execute_with_sudo chown "root:${user_name}" "${install_dir}/${module_name}/wordnav.keys"
+ar18.script.execute_with_sudo chmod 4750 "${install_dir}/${module_name}/wordnav.keys"
 
-echo "${ar18_sudo_password}" | sudo -Sk su -c "echo \"${install_dir}\" > \"${install_dir}/ar18_prefix\""
+ar18.script.execute_with_sudo su -c "echo \"${install_dir}\" > \"${install_dir}/ar18_prefix\""
 
-mkdir -p "${script_dir}/build"
+build_dir="/tmp"
 
-cd "${script_dir}/build"
+cd "${build_dir}"
 git clone https://github.com/ar18-linux/libstderred.git
-echo "${ar18_sudo_password}" | sudo -Sk chmod +x "${script_dir}/build/libstderred/install.sh"
+ar18.script.execute_with_sudo chmod +x "${build_dir}/libstderred/install.sh"
 "${script_dir}/build/libstderred/install.sh"
 
-cd "${script_dir}/build"
+cd "${build_dir}"
 git clone https://github.com/ar18-linux/zsh_ar18_lib.git
-echo "${ar18_sudo_password}" | sudo -Sk chmod +x "${script_dir}/build/zsh_ar18_lib/install.sh"
+ar18.script.execute_with_sudo chmod +x "${build_dir}/zsh_ar18_lib/install.sh"
 "${script_dir}/build/zsh_ar18_lib/install.sh"
 
-cd "${script_dir}/build"
+cd "${build_dir}"
 git clone https://github.com/ar18-linux/GitBSLR.git
-echo "${ar18_sudo_password}" | sudo -Sk chmod +x "${script_dir}/build/GitBSLR/install.sh"
+ar18.script.execute_with_sudo chmod +x "${build_dir}/GitBSLR/install.sh"
 "${script_dir}/build/GitBSLR/install.sh"
 
-echo "${ar18_sudo_password}" | sudo -Sk usermod --shell /bin/zsh "${user_name}"
+ar18.script.execute_with_sudo usermod --shell /bin/zsh "${user_name}"
 
 ##################################SCRIPT_END###################################
 # Restore old shell values
