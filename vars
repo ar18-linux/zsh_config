@@ -1,8 +1,8 @@
 module_name="zsh_config"
 
+if [ ! -v user_name ]; then
+  user_name="$(whoami)"
+fi
 if [ ! -v install_dir ]; then
   install_dir="/opt/ar18"
-fi
-if [ ! -v user_name ]; then
-  user_name="$(logname)"
 fi
