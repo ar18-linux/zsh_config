@@ -65,12 +65,12 @@ ar18.script.execute_with_sudo chmod +x "${build_dir}/libstderred/install.sh"
 cd "${build_dir}"
 git clone https://github.com/ar18-linux/zsh_ar18_lib.git
 ar18.script.execute_with_sudo chmod +x "${build_dir}/zsh_ar18_lib/install.sh"
-"${script_dir}/build/zsh_ar18_lib/install.sh"
+"${build_dir}/zsh_ar18_lib/install.sh"
 
 cd "${build_dir}"
 git clone https://github.com/ar18-linux/GitBSLR.git
 ar18.script.execute_with_sudo chmod +x "${build_dir}/GitBSLR/install.sh"
-"${script_dir}/build/GitBSLR/install.sh"
+"${build_dir}/GitBSLR/install.sh"
 
 ar18.script.execute_with_sudo usermod --shell /bin/zsh "${user_name}"
 
