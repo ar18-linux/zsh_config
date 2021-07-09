@@ -53,7 +53,7 @@ ar18.script.execute_with_sudo su -c "echo \"${install_dir}\" > \"${install_dir}/
 
 build_dir="/tmp/build"
 
-ar18.script.execute_with_sudo rm -rf !${build_dir}
+ar18.script.execute_with_sudo rm -rf ${build_dir}
 
 mkdir -p "${build_dir}"
 
