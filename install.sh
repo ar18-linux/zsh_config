@@ -51,12 +51,16 @@ ar18.script.execute_with_sudo chmod 4750 "${install_dir}/${module_name}/wordnav.
 
 ar18.script.execute_with_sudo su -c "echo \"${install_dir}\" > \"${install_dir}/ar18_prefix\""
 
-build_dir="/tmp"
+build_dir="/tmp/build"
+
+ar18.script.execute_with_sudo rm -rf !${build_dir}
+
+mkdir -p "${build_dir}"
 
 cd "${build_dir}"
 git clone https://github.com/ar18-linux/libstderred.git
 ar18.script.execute_with_sudo chmod +x "${build_dir}/libstderred/install.sh"
-"${script_dir}/build/libstderred/install.sh"
+"${build_dir}/libstderred/install.sh"
 
 cd "${build_dir}"
 git clone https://github.com/ar18-linux/zsh_ar18_lib.git
