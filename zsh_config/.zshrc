@@ -47,7 +47,7 @@ export AR18_PREFIX="$(cat /opt/ar18/ar18_prefix)"
 find "/dev/shm/ar18/../"* -mindepth 1 -maxdepth 1 -type d -not -name tmp -not -name libstderrred -exec rm -r {} +;
 mkdir -p "/dev/shm/ar18"
 #rsync -rL "${AR18_PREFIX}/tmux" "/dev/shm/ar18/"
-rsync -rL "${AR18_PREFIX}/zsh_ar18_lib" "/dev/shm/ar18/"
+rsync -rL "${AR18_PREFIX}/ar18_lib_zsh" "/dev/shm/ar18/"
 #rsync -rL "${AR18_PREFIX}/background" "/dev/shm/ar18/"
 rsync -rL "${AR18_PREFIX}/libstderred" "/dev/shm/ar18/"
 rsync -rL "${AR18_PREFIX}/GitBSLR" "/dev/shm/ar18/"
@@ -58,7 +58,7 @@ chmod 755 "${AR18_PREFIX}" -R
 
 # Debugging ar18lib. Re-source functions even when already defined.
 alias type="false"
-. ${AR18_PREFIX}/zsh_ar18_lib/ar18.sh
+. ${AR18_PREFIX}/ar18_lib_zsh/ar18.sh
 
 ## Attach to last tmux session or start it if there a no sessions yet.
 #if [ "$TMUX" = "" ]; then tmux attach || tmux; fi
