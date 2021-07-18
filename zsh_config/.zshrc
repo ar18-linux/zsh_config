@@ -380,6 +380,7 @@ alias git="LD_PRELOAD=/opt/ar18/GitBSLR/gitbslr.so git"
 # Programs that don't work well with libstderred
 alias systemctl="LD_PRELOAD='' systemctl"
 alias python="LD_PRELOAD='' python"
+alias ufw="LD_PRELOAD='' ufw"
 alias bash="LD_PRELOAD='' bash"
 alias xonsh="LD_PRELOAD='' xonsh"
 alias makepkg="LD_PRELOAD='' makepkg"
